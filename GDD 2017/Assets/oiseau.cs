@@ -1,43 +1,61 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+
 
 public class oiseau : MonoBehaviour 
 {
+	public float score = 0f;
+	public int score2 ;
+	public float vitesse = 0.01f;
+	public int axey = 0;
+	public float addsc =0.2f;
+	public float score3=0f;
+	public int score4;
 
-    private static readonly float Vitesse = 0.1f;
+	// Use this for initialization
+	void Start () 
+	{
+
+	
+	}
+
+	
+	// Update is called once per frame
+	void Update () 
+	{
+		score = score + addsc;
+		score2 = (int)score;
+		score4 = (int)score3;
+		score3= score3+addsc;
+		if (score3>61f)
+		{
+			score3=0f;
+		}
 
 
-    private Rigidbody myBody;
+		transform.Translate (0,vitesse*axey,0);
+		if (Input.GetKey(KeyCode.DownArrow))
+		{
+			axey++;
+		}
+		if (Input.GetKey(KeyCode.UpArrow))
+		{
+			axey--;
+		}
+		if (score > 300) 
+		{
+			score =score + 2*addsc ;
+		}
+		if (score > 600) 
+		{
+			score = score + 3*addsc;
+		}
+	
+	}
 
-    // Use this for initialization
-    void Start () 
-    {
-        myBody = this.GetComponent<Rigidbody>();
-    }
-    
-    // Update is called once per frame
-    void Update () 
-    {
-        Vector3 transalation = Vitesse * InLocalBase(new Vector3(0, Mathf.Sin(transform.rotation.z), 0));
-        //transform.Translate(transalation);
 
-        myBody.AddForce(transalation);
 
-        if (Input.GetKey(KeyCode.DownArrow))
-        {
-            transform.Rotate(0,0,1);            
-        }
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            transform.Rotate(0,0,-1);            
-        }
-    
-    }
 
-    Vector3 InLocalBase(Vector3 v)
-    {
-        var alpha = transform.rotation.z;
-        return new Vector3(v.x*Mathf.Cos(alpha) + v.y*Mathf.Sin(alpha), v.x * Mathf.Sin(alpha) + v.y * Mathf.Cos(alpha), 0);
-    }
 
 }
