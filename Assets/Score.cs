@@ -7,7 +7,7 @@ namespace Gauthier
 {
     public class Score : MonoBehaviour
     {
-        public Text ScoreText;
+        private TextMesh ScoreText;
         private float ScoreCoefficient;
         public float FixedUpdateScoreCoeffIncrement;
         public float ScoreValue;
@@ -17,7 +17,7 @@ namespace Gauthier
         // Use this for initialization
         void Start()
         {
-
+            ScoreText = GetComponent<TextMesh>();
         }
 
         // Update is called once per frame
