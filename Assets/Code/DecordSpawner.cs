@@ -9,6 +9,10 @@ public class DecordSpawner : MonoBehaviour
     public Vector3 SpawnLocation;
     public float SpawnInterval;
 
+    public bool IsRandom;
+    public float verticalRange;
+    public float timeRange;
+
     private float TimeToNextSpawn;
 
 	// Use this for initialization
@@ -29,9 +33,18 @@ public class DecordSpawner : MonoBehaviour
     void Spawn()
     {
         var newDecord = Instantiate(DecordModel);
-        newDecord.transform.position = SpawnLocation;
         newDecord.Speed = DecordSpeed;
-        TimeToNextSpawn = SpawnInterval;
+
+        if (!IsRandom)
+        {
+            newDecord.transform.position = SpawnLocation;
+            TimeToNextSpawn = SpawnInterval;
+        }
+        else
+        {
+            newDecord.transform.position = SpawnLocation + new Vector3(0, (Random.value * 2 - 1) * verticalRange);
+            TimeToNextSpawn = SpawnInterval + (Random.value * 2 - 1) * timeRange;
+        }
     }
 
     
