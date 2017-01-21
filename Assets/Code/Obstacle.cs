@@ -9,13 +9,11 @@ namespace Gauthier
     {
         public float HorizontalSpeed;
 
-        public static readonly float HorizontalLimit = -25.0f;
+        public float HorizontalLimit = -40.0f;
 
         // Use this for initialization
         void Start()
         {
-
-
         }
 
         // Update is called once per frame

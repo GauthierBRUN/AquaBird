@@ -4,8 +4,9 @@ using System.Collections;
 public class OiseauAnimation : MonoBehaviour 
 {
 	public OiseauMove MoveComponent;
+    public bool splash;
 
-	void Start () 
+    void Start () 
 	{
 
 	}
@@ -29,6 +30,7 @@ public class OiseauAnimation : MonoBehaviour
         if (c.gameObject.tag == "eau")
         {
             MoveComponent.vitesse = MoveComponent.vitesse / 2;
+            splash = true;
         }
         if (c.gameObject.tag == "obstacle")
         {
@@ -41,7 +43,8 @@ public class OiseauAnimation : MonoBehaviour
 		if (c.gameObject.tag == "eau") 
 		{
 			MoveComponent.vitesse = MoveComponent.vitesse * 2;
-		}
+            splash = false;
+        }
 	}
 
 	// Update is called once per frame

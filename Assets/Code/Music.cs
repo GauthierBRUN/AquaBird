@@ -26,13 +26,13 @@ public class Music : MonoBehaviour {
 		_plouf = FMODUnity.RuntimeManager.CreateInstance (Plouf);
 		_birdtheme.start ();
 	
-		splash = oiseau.GetComponent<oiseau2> ().splash;
+		splash = oiseau.GetComponent<OiseauAnimation> ().splash;
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		splash = oiseau.GetComponent<oiseau2> ().splash;
+		splash = oiseau.GetComponent<OiseauAnimation> ().splash;
 
 		if (splash && dansLeau == false)
 		{
