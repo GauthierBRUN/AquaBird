@@ -10,6 +10,7 @@ namespace Gauthier
         public Obstacle SpawnedObject;
 
         public float InitialSpeedOfSpawned;
+        public float SpawnX;
         public float MinimalSpawnHeight;
         public float MaximalSpawnHeight;
 
@@ -40,7 +41,7 @@ namespace Gauthier
         {
             var newFoudre = Instantiate(SpawnedObject);
             newFoudre.HorizontalSpeed = InitialSpeedOfSpawned;
-            newFoudre.transform.position = new Vector3(newFoudre.transform.position.x, MinimalSpawnHeight + Random.value * (MaximalSpawnHeight - MinimalSpawnHeight), newFoudre.transform.position.z);
+            newFoudre.transform.position = new Vector3(SpawnX, MinimalSpawnHeight + Random.value * (MaximalSpawnHeight - MinimalSpawnHeight), 0);
         }
 
         float GenerateTimeToNextSpawn()
