@@ -12,6 +12,8 @@ namespace Gauthier
         public float FixedUpdateScoreCoeffIncrement;
         public float ScoreValue;
 
+        public bool GameFinished;
+
         // Use this for initialization
         void Start()
         {
@@ -26,8 +28,11 @@ namespace Gauthier
 
         private void FixedUpdate()
         {
-            ScoreCoefficient += FixedUpdateScoreCoeffIncrement;
-            ScoreValue += ScoreCoefficient * Time.fixedDeltaTime;
+            if (!GameFinished)
+            {
+                ScoreCoefficient += FixedUpdateScoreCoeffIncrement;
+                ScoreValue += ScoreCoefficient * Time.fixedDeltaTime;
+            }
         }
     }
 }
