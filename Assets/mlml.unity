@@ -2021,3 +2021,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cd37f620bdba054e808d7f40d652736, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FixedUpdateScoreCoeffIncrement: 0.1
+  ScoreValue: 0
+  GameFinished: 0
