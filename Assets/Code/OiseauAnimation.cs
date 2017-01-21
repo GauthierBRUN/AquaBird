@@ -5,6 +5,7 @@ public class OiseauAnimation : MonoBehaviour
 {
 	public OiseauMove MoveComponent;
     public bool splash;
+    public bool DansLeau;
 
     void Start () 
 	{
@@ -44,8 +45,18 @@ public class OiseauAnimation : MonoBehaviour
 		{
 			MoveComponent.vitesse = MoveComponent.vitesse * 2;
             splash = false;
+            DansLeau = false;
         }
 	}
+
+    void OnTriggerStay(Collider c)
+    {
+        if (c.gameObject.tag == "eau")
+        {
+            DansLeau = true;
+            //splash = false;
+        }
+    }
 
 	// Update is called once per frame
 	void Update () 

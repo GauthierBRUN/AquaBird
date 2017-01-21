@@ -15,30 +15,43 @@ public class Music : MonoBehaviour {
 
 	FMOD.Studio.EventInstance _birdtheme;
 	FMOD.Studio.EventInstance _plouf;
+    FMOD.Studio.ParameterInstance _water;
 
 	//public oiseau2 splash;
-	bool dansLeau = false;
+	bool ploufdansLeau = false;
+     
 
 	void Start () 
 	{
 		_birdtheme = FMODUnity.RuntimeManager.CreateInstance (BirdTheme);
 		_plouf = FMODUnity.RuntimeManager.CreateInstance (Plouf);
-		_birdtheme.start ();		
+		_birdtheme.start ();
+        _birdtheme.getParameter("water", out _water);
+        _water.setValue(0);
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		if (oiseau.splash && dansLeau == false)
+		if (oiseau.splash && ploufdansLeau == false)
 		{
 			_plouf.start ();
-			dansLeau = true;
+			ploufdansLeau = true;
 			Debug.Log ("splash");
 		}
 
-		if (!oiseau.splash && dansLeau)
+		if (!oiseau.splash && ploufdansLeau)
 		{
-			dansLeau = false;
+			ploufdansLeau = false;
 		}
+        //Quand l'oiseau est dans l'eau
+        if (oiseau.DansLeau)
+        {
+            _water.setValue(0.5f);
+        }
+        else if (!oiseau.DansLeau)
+        {
+            _water.setValue(0.0f);
+        }
 	}
 }
