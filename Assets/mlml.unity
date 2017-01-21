@@ -337,7 +337,7 @@ Prefab:
     - target: {fileID: 114621275805767058, guid: d497969c3b2dc314cac45be95911cf1d,
         type: 2}
       propertyPath: InitialSpeedOfSpawned
-      value: 10
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 114621275805767058, guid: d497969c3b2dc314cac45be95911cf1d,
         type: 2}
@@ -1212,13 +1212,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpawnedObject: {fileID: 877983879}
-  InitialSpeedOfSpawned: 4
+  InitialSpeedOfSpawned: 10
   SpawnX: 40
   MinimalSpawnHeight: 2
   MaximalSpawnHeight: 18
   MinimalTimeInterval: 4
   TimeToNextSpawn: 0
-  Lambda: 1
+  Lambda: 10
 --- !u!23 &908360041
 MeshRenderer:
   m_ObjectHideFlags: 0
