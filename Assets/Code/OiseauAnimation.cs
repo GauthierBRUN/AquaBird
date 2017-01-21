@@ -7,7 +7,7 @@ public class OiseauAnimation : MonoBehaviour
     public bool splash;
     public bool DansLeau;
     float rotatintense = 0f;
-    public float vitessetourne = 25;
+    public float vitessetourne = 25f;
 
     void Start () 
 	{
@@ -46,6 +46,7 @@ public class OiseauAnimation : MonoBehaviour
         if (c.gameObject.tag == "obstacle")
         {
             MoveComponent.axey = MoveComponent.axey - 5;
+            transform.Rotate (0,0,-vitessetourne*5*Time.deltaTime);
         }
     }
 
