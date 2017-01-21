@@ -11,10 +11,18 @@ public class Music : MonoBehaviour {
 	[FMODUnity.EventRef]
 	public string Plouf;
 
-	public OiseauAnimation oiseau;
+    [FMODUnity.EventRef]
+    public string Intro;
+
+
+
+    public OiseauAnimation oiseau;
+    public GameObject ScreenDepart;
 
 	FMOD.Studio.EventInstance _birdtheme;
 	FMOD.Studio.EventInstance _plouf;
+    FMOD.Studio.EventInstance _intro;
+
     FMOD.Studio.ParameterInstance _water;
 
 	//public oiseau2 splash;
@@ -25,7 +33,9 @@ public class Music : MonoBehaviour {
 	{
 		_birdtheme = FMODUnity.RuntimeManager.CreateInstance (BirdTheme);
 		_plouf = FMODUnity.RuntimeManager.CreateInstance (Plouf);
-		_birdtheme.start ();
+        _intro = FMODUnity.RuntimeManager.CreateInstance(Intro);
+        
+        _intro.start();
         _birdtheme.getParameter("water", out _water);
         _water.setValue(0);
 	}
@@ -33,7 +43,13 @@ public class Music : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if (oiseau.splash && ploufdansLeau == false)
+        if (Input.GetKey(KeyCode.Space))
+        {
+            ScreenDepart.SetActive(false);
+            _intro.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            _birdtheme.start ();
+        }
+        if (oiseau.splash && ploufdansLeau == false)
 		{
 			_plouf.start ();
 			ploufdansLeau = true;
