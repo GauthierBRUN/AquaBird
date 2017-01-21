@@ -11,37 +11,32 @@ public class Music : MonoBehaviour {
 	[FMODUnity.EventRef]
 	public string Plouf;
 
-	public GameObject oiseau;
+	public OiseauAnimation oiseau;
 
 	FMOD.Studio.EventInstance _birdtheme;
 	FMOD.Studio.EventInstance _plouf;
 
 	//public oiseau2 splash;
-	bool splash = false;
 	bool dansLeau = false;
 
 	void Start () 
 	{
 		_birdtheme = FMODUnity.RuntimeManager.CreateInstance (BirdTheme);
 		_plouf = FMODUnity.RuntimeManager.CreateInstance (Plouf);
-		_birdtheme.start ();
-	
-		splash = oiseau.GetComponent<OiseauAnimation> ().splash;
+		_birdtheme.start ();		
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		splash = oiseau.GetComponent<OiseauAnimation> ().splash;
-
-		if (splash && dansLeau == false)
+		if (oiseau.splash && dansLeau == false)
 		{
 			_plouf.start ();
 			dansLeau = true;
 			Debug.Log ("splash");
 		}
 
-		if (!splash && dansLeau)
+		if (!oiseau.splash && dansLeau)
 		{
 			dansLeau = false;
 		}

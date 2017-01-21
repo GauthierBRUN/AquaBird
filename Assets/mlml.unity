@@ -526,7 +526,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d574d0a69b2bf3e48aac124768110fad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  script: {fileID: 0}
 --- !u!65 &552959324
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1023,7 +1022,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BirdTheme: event:/musique
   Plouf: event:/entreeEau
-  oiseau: {fileID: 1963356729}
+  oiseau: {fileID: 1963356735}
 --- !u!1001 &1157503068
 Prefab:
   m_ObjectHideFlags: 0
@@ -1435,7 +1434,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d574d0a69b2bf3e48aac124768110fad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  script: {fileID: 0}
 --- !u!33 &1645135609
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1670,11 +1668,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1863892879}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eaa95220697b33148a170bfd9ffa38fc, type: 3}
+  m_Script: {fileID: 11500000, guid: e9c29e790fcf68942a9136c6c18da645, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveComponent: {fileID: 1963356735}
-  splash: 0
+  vitesse: 1
+  axey: 0
 --- !u!212 &1863892881
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1912,11 +1910,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1963356729}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9c29e790fcf68942a9136c6c18da645, type: 3}
+  m_Script: {fileID: 11500000, guid: eaa95220697b33148a170bfd9ffa38fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vitesse: 0.1
-  axey: 0
+  MoveComponent: {fileID: 1863892880}
+  splash: 0
 --- !u!1001 &2079634339
 Prefab:
   m_ObjectHideFlags: 0
@@ -2069,6 +2067,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cd37f620bdba054e808d7f40d652736, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FixedUpdateScoreCoeffIncrement: 0.1
-  ScoreValue: 0
-  GameFinished: 0
