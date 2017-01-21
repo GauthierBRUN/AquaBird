@@ -6,6 +6,8 @@ public class OiseauAnimation : MonoBehaviour
 	public OiseauMove MoveComponent;
     public bool splash;
     public bool DansLeau;
+    float rotatintense = 0f;
+    public float vitessetourne = 25;
 
     void Start () 
 	{
@@ -24,7 +26,15 @@ public class OiseauAnimation : MonoBehaviour
                 score[0].GameFinished = true;
             }	
 		}
+		MoveComponent.axey = 0;
+
 	}
+	void OnCollisionEnter (Collision c)
+	{
+		transform.Rotate(0,0,-rotatintense);
+		rotatintense=0f;
+	}
+	
 
 	void OnTriggerEnter(Collider c)
 	{
@@ -63,11 +73,15 @@ public class OiseauAnimation : MonoBehaviour
 	{
 		if (Input.GetKey (KeyCode.DownArrow)) 
 		{
-			transform.Rotate (0, 0, 1);
+			transform.Rotate (0, 0, vitessetourne*Time.deltaTime);
+			rotatintense=rotatintense+vitessetourne*Time.deltaTime;
+			
 		}
 		if (Input.GetKey (KeyCode.UpArrow)) 
 		{
-			transform.Rotate (0, 0, -1);
+			transform.Rotate (0, 0, -vitessetourne*Time.deltaTime);
+			rotatintense=rotatintense+vitessetourne*-Time.deltaTime;
+			
 		}	
 	}
 
