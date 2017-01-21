@@ -9,7 +9,7 @@ namespace Gauthier
     {
         public float HorizontalSpeed;
 
-        public float HorizontalLimit = -40.0f;
+        public float HorizontalLimit = -100.0f;
 
         // Use this for initialization
         void Start()
