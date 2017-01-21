@@ -834,8 +834,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpawnedObject: {fileID: 877983879}
   InitialSpeedOfSpawned: 4
-  MinimalSpawnHeight: 1
-  MaximalSpawnHeight: 5
+  MinimalSpawnHeight: 2
+  MaximalSpawnHeight: 18
   MinimalTimeInterval: 4
   TimeToNextSpawn: 0
   Lambda: 1
@@ -1618,7 +1618,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 75b2421f7dc855c41a791759645065be, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 23.74
+      value: 27.2
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 75b2421f7dc855c41a791759645065be, type: 3}
       propertyPath: m_LocalPosition.y
