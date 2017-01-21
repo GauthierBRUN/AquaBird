@@ -23,7 +23,7 @@ namespace Gauthier
         // Update is called once per frame
         void Update()
         {
-            ScoreText.text = ScoreValue + " pts";
+            ScoreText.text = ScoreValue.ToString("0.") + " pts";
         }
 
         private void FixedUpdate()
