@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4465785, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -2617,11 +2617,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 18a5b4569fdc31947912610232563cd7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.056337975
+      value: -3.84
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 18a5b4569fdc31947912610232563cd7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.056479
+      value: 0.63
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 18a5b4569fdc31947912610232563cd7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3695,7 +3695,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1863892882}
   - component: {fileID: 1863892881}
-  - component: {fileID: 1863892880}
   m_Layer: 0
   m_Name: New Sprite
   m_TagString: Untagged
@@ -3703,19 +3702,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1863892880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1863892879}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9c29e790fcf68942a9136c6c18da645, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vitesse: 1
-  axey: 0
 --- !u!212 &1863892881
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3907,8 +3893,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.854036, y: 1.7418088, z: 1}
-  m_Center: {x: 0.8207979, y: 7.2648754, z: 0}
+  m_Size: {x: 3.1995916, y: 1.2837211, z: 1}
+  m_Center: {x: -2.942096, y: 1.8659718, z: 0}
 --- !u!33 &1963356732
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3957,10 +3943,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaa95220697b33148a170bfd9ffa38fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveComponent: {fileID: 1863892880}
-  splash: 0
-  DansLeau: 0
-  vitessetourne: 25
+  MoveComponent: {fileID: 1863892879}
+  MaximumVerticalSpeed: 30
+  RotationSpeed: 90
+  MaximumVerticalAngleTop: 30
+  MaximumVerticalAngleBottom: -30
+  HasWaterTransitionBeenPlayed: 0
+  IsInWater: 0
 --- !u!1 &1978042565 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1998960489297476, guid: 82421aa0a2fc67e40bae542b850c4164,
@@ -4151,9 +4140,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cd37f620bdba054e808d7f40d652736, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FixedUpdateScoreCoeffIncrement: 0.1
-  ScoreValue: 0
-  GameFinished: 0
 --- !u!1001 &2108592119
 Prefab:
   m_ObjectHideFlags: 0

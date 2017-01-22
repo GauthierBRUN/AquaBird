@@ -14,8 +14,6 @@ public class Music : MonoBehaviour {
     [FMODUnity.EventRef]
     public string Intro;
 
-
-
     public OiseauAnimation oiseau;
     public GameObject ScreenDepart;
     public GameObject Fleche;
@@ -25,9 +23,6 @@ public class Music : MonoBehaviour {
     FMOD.Studio.EventInstance _intro;
 
     FMOD.Studio.ParameterInstance _water;
-
-	//public oiseau2 splash;
-	bool ploufdansLeau = false;
      
 
 	void Start () 
@@ -51,23 +46,24 @@ public class Music : MonoBehaviour {
             _intro.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             _birdtheme.start ();
         }
-        if (oiseau.splash && ploufdansLeau == false)
+
+        if (oiseau.IsInWater &&  !oiseau.HasWaterTransitionBeenPlayed)
 		{
 			_plouf.start ();
-			ploufdansLeau = true;
-			Debug.Log ("splash");
+            oiseau.HasWaterTransitionBeenPlayed = true;
+			Debug.Log ("splash in");
+		}
+		else if (!oiseau.IsInWater && !oiseau.HasWaterTransitionBeenPlayed)
+		{
+            oiseau.HasWaterTransitionBeenPlayed = true;
 		}
 
-		if (!oiseau.splash && ploufdansLeau)
-		{
-			ploufdansLeau = false;
-		}
         //Quand l'oiseau est dans l'eau
-        if (oiseau.DansLeau)
+        if (oiseau.IsInWater)
         {
             _water.setValue(0.5f);
         }
-        else if (!oiseau.DansLeau)
+        else
         {
             _water.setValue(0.0f);
         }
