@@ -18,11 +18,19 @@ namespace Gauthier
       
         public bool IsGameRunning;
 
-        
+        private Music musicController;
+
+        public GameObject Fleches;
 
         // Use this for initialization
         void Start()
         {
+            var score = GameObject.FindObjectsOfType<Music>();
+            if (score.Length > 0)
+            {
+                musicController = score[0];
+            }
+
             ScoreText = GetComponent<TextMesh>();
             IsGameRunning = false;           
         }
@@ -54,12 +62,16 @@ namespace Gauthier
             IsGameRunning = true;
             ScreenDepart.text = "";
             Bird.Rebird();
+            musicController.PlayStartGame();
+            Fleches.SetActive(false);
         }
 
         public void EndGame()
         {
             IsGameRunning = false;
             ScreenDepart.text = "Game Over";
+            musicController.PlayEndGame();
+            Fleches.SetActive(true);
         }
 
     }
