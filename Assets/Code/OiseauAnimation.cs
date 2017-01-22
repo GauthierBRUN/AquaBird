@@ -3,20 +3,39 @@ using System.Collections;
 
 public class OiseauAnimation : MonoBehaviour 
 {
-	public OiseauMove MoveComponent;
-    public bool splash;
-    public bool DansLeau;
-    float rotatintense = 0f;
-    public float vitessetourne = 25f;
+	public GameObject MoveComponent;
+
+    public float MaximumVerticalSpeed;
+    public float RotationSpeed;
+    public float MaximumVerticalAngleTop;
+    public float MaximumVerticalAngleBottom;
+
+    public bool HasWaterTransitionBeenPlayed;
+    public bool IsInWater;
 
     void Start () 
 	{
 
 	}
 
+    void Update()
+    {        
+        if (Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.UpArrow))
+        {
+            LocalRotate(RotationSpeed * Time.deltaTime);
+        }
+        else if (Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow))
+        {
+            LocalRotate(- RotationSpeed * Time.deltaTime);
+        }
+    }
 
+    private void FixedUpdate()
+    {
+        MoveComponent.transform.Translate(0, Time.fixedDeltaTime * ComputeVerticalSpeed(), 0);
+    }
 
-	void OnCollisionStay (Collision c)
+    void OnCollisionStay (Collision c)
 	{
 		if (c.gameObject.tag == "limite") 
 		{
@@ -26,27 +45,26 @@ public class OiseauAnimation : MonoBehaviour
                 score[0].GameFinished = true;
             }	
 		}
-		MoveComponent.axey = 0;
-
 	}
+
 	void OnCollisionEnter (Collision c)
 	{
-		transform.Rotate(0,0,-rotatintense);
-		rotatintense=0f;
+
 	}
 	
 
 	void OnTriggerEnter(Collider c)
 	{
-        if (c.gameObject.tag == "eau")
+        switch (c.gameObject.tag)
         {
-            MoveComponent.vitesse = MoveComponent.vitesse / 2;
-            splash = true;
-        }
-        if (c.gameObject.tag == "obstacle")
-        {
-            MoveComponent.axey = MoveComponent.axey - 5;
-            transform.Rotate (0,0,-vitessetourne*5*Time.deltaTime);
+            case "eau":
+                IsInWater = true;
+                HasWaterTransitionBeenPlayed = false;
+                break;
+            case "obstacle":
+                break;
+            default:
+            break;
         }
     }
 
@@ -54,9 +72,8 @@ public class OiseauAnimation : MonoBehaviour
 	{
 		if (c.gameObject.tag == "eau") 
 		{
-			MoveComponent.vitesse = MoveComponent.vitesse * 2;
-            splash = false;
-            DansLeau = false;
+            IsInWater = false;
+            HasWaterTransitionBeenPlayed = false;
         }
 	}
 
@@ -64,26 +81,23 @@ public class OiseauAnimation : MonoBehaviour
     {
         if (c.gameObject.tag == "eau")
         {
-            DansLeau = true;
-            //splash = false;
+            IsInWater = true;
         }
     }
 
-	// Update is called once per frame
-	void Update () 
-	{
-		if (Input.GetKey (KeyCode.DownArrow)) 
-		{
-			transform.Rotate (0, 0, vitessetourne*Time.deltaTime);
-			rotatintense=rotatintense+vitessetourne*Time.deltaTime;
-			
-		}
-		if (Input.GetKey (KeyCode.UpArrow)) 
-		{
-			transform.Rotate (0, 0, -vitessetourne*Time.deltaTime);
-			rotatintense=rotatintense+vitessetourne*-Time.deltaTime;
-			
-		}	
-	}
+    float ComputeVerticalSpeed()
+    {
+        return MaximumVerticalSpeed * Mathf.Sin(transform.rotation.z);
+    }
+
+
+    void LocalRotate (float z)
+    {
+        float zafaterRotation = z + transform.rotation.z *180 / Mathf.PI;
+        if (zafaterRotation < MaximumVerticalAngleTop && zafaterRotation > MaximumVerticalAngleBottom)
+        {
+            transform.Rotate(0, 0, z);
+        }
+    }
 
 }
