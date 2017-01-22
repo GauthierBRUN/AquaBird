@@ -34,6 +34,7 @@ public class DecordSpawner : MonoBehaviour
     {
         var newDecord = Instantiate(DecordModel);
         newDecord.Speed = DecordSpeed;
+        newDecord.isOriginal = false;
 
         if (!IsRandom)
         {

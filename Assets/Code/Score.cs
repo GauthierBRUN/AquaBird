@@ -46,6 +46,11 @@ namespace Gauthier
             {
                 StartGame();
             }
+
+            if (Input.GetKey(KeyCode.Escape))
+            {
+                Application.Quit();
+            }
         }
 
         private void FixedUpdate()

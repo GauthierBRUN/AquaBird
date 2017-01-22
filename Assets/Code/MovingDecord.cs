@@ -5,6 +5,7 @@ using UnityEngine;
 public class MovingDecord : MonoBehaviour {
 
     public float Speed;
+    public bool isOriginal = true;
 
 	// Use this for initialization
 	void Start () {
@@ -12,12 +13,16 @@ public class MovingDecord : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-        transform.Translate(-Speed * Time.deltaTime, 0, 0);
+	void Update () {       
         
-        if (transform.position.x < -250.0f)
+        if (!isOriginal && transform.position.x < -250.0f)
         {
             Destroy(this.gameObject);
         }
+        else
+        {
+            transform.Translate(-Speed * Time.deltaTime, 0, 0);
+        }
+
 	}
 }

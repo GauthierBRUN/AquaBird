@@ -11,6 +11,10 @@ public class Music : MonoBehaviour {
 	[FMODUnity.EventRef]
 	public string Plouf;
 
+
+    [FMODUnity.EventRef]
+    public string mort;
+
     [FMODUnity.EventRef]
     public string Intro;
 
@@ -25,6 +29,7 @@ public class Music : MonoBehaviour {
 	FMOD.Studio.EventInstance _plouf;
     FMOD.Studio.EventInstance _intro;
     FMOD.Studio.EventInstance _sortieEau;
+    FMOD.Studio.EventInstance _mort;
 
     FMOD.Studio.ParameterInstance _water;
      
@@ -35,6 +40,7 @@ public class Music : MonoBehaviour {
 		_plouf = FMODUnity.RuntimeManager.CreateInstance (Plouf);
         _intro = FMODUnity.RuntimeManager.CreateInstance(Intro);
         _sortieEau = FMODUnity.RuntimeManager.CreateInstance(sortieEau);
+        _mort = FMODUnity.RuntimeManager.CreateInstance(mort);
 
         _intro.start();
         _birdtheme.getParameter("water", out _water);
@@ -49,7 +55,8 @@ public class Music : MonoBehaviour {
 
     public void PlayEndGame()
     {
-
+        _mort.start();
+        _birdtheme.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 
 
@@ -59,6 +66,7 @@ public class Music : MonoBehaviour {
         if (oiseau.IsInWater &&  !oiseau.HasWaterTransitionBeenPlayed)
 		{
 			_plouf.start ();
+            Debug.Log("plouf");
             oiseau.HasWaterTransitionBeenPlayed = true;
 		}
 		else if (!oiseau.IsInWater && !oiseau.HasWaterTransitionBeenPlayed)

@@ -36,6 +36,7 @@ public class OiseauAnimation : MonoBehaviour
         StarttRotation = transform.rotation;
         StartPositionInner = transform.position;
         IsAlive = true;
+        HasWaterTransitionBeenPlayed = true;
     }
 
     void Update()
