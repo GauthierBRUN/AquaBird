@@ -1355,7 +1355,7 @@ GameObject:
   - component: {fileID: 827017070}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: obstacle
+  m_TagString: eau
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2133,8 +2133,6 @@ MonoBehaviour:
   Intro: event:/intro
   sortieEau: event:/sortieEau
   oiseau: {fileID: 1963356735}
-  ScreenDepart: {fileID: 1695648028}
-  Fleche: {fileID: 135282048}
 --- !u!1 &1139219968
 GameObject:
   m_ObjectHideFlags: 0
@@ -3952,6 +3950,7 @@ MonoBehaviour:
   MaximumVerticalAngleBottom: -30
   HasWaterTransitionBeenPlayed: 1
   IsInWater: 0
+  IsAlive: 0
 --- !u!1 &1978042565 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1998960489297476, guid: 82421aa0a2fc67e40bae542b850c4164,
@@ -4142,9 +4141,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cd37f620bdba054e808d7f40d652736, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FixedUpdateScoreCoeffIncrement: 0
+  ScreenDepart: {fileID: 1695648031}
+  FixedUpdateScoreCoeffIncrement: 0.42
   ScoreValue: 0
-  GameFinished: 0
+  StartPosition: {x: 0, y: 0, z: 0}
+  Bird: {fileID: 1963356735}
+  IsGameRunning: 0
 --- !u!1001 &2108592119
 Prefab:
   m_ObjectHideFlags: 0

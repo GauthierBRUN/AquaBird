@@ -40,23 +40,26 @@ public class Music : MonoBehaviour {
         _birdtheme.getParameter("water", out _water);
         _water.setValue(0);
 	}
-	
+
+    public void PlayStartGame()
+    {
+        _intro.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        _birdtheme.start();
+    }
+
+    public void PlayEndGame()
+    {
+
+    }
+
+
 	// Update is called once per frame
 	void Update () 
 	{
-        if (Input.GetKey(KeyCode.Space))
-        {
-            Fleche.SetActive(false);
-            ScreenDepart.SetActive(false);
-            _intro.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-            _birdtheme.start ();
-        }
-
         if (oiseau.IsInWater &&  !oiseau.HasWaterTransitionBeenPlayed)
 		{
 			_plouf.start ();
             oiseau.HasWaterTransitionBeenPlayed = true;
-			Debug.Log ("splash in");
 		}
 		else if (!oiseau.IsInWater && !oiseau.HasWaterTransitionBeenPlayed)
 		{
