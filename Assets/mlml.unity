@@ -3945,8 +3945,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveComponent: {fileID: 1863892879}
-  MaximumVerticalSpeed: 50
-  RotationSpeed: 70
+  AirVerticalSpeed: 90
+  WaterVerticalSpeed: 30
+  RotationSpeed: 90
   MaximumVerticalAngleTop: 30
   MaximumVerticalAngleBottom: -30
   HasWaterTransitionBeenPlayed: 1

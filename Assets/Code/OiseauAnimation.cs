@@ -5,13 +5,18 @@ public class OiseauAnimation : MonoBehaviour
 {
 	public GameObject MoveComponent;
 
-    public float MaximumVerticalSpeed;
+    public float AirVerticalSpeed;
+    public float WaterVerticalSpeed;
+
     public float RotationSpeed;
     public float MaximumVerticalAngleTop;
     public float MaximumVerticalAngleBottom;
 
+
     public bool HasWaterTransitionBeenPlayed;
     public bool IsInWater;
+
+
 
     void Start () 
 	{
@@ -87,14 +92,21 @@ public class OiseauAnimation : MonoBehaviour
 
     float ComputeVerticalSpeed()
     {
-        return MaximumVerticalSpeed * Mathf.Sin(transform.rotation.z);
+        if (IsInWater)
+        {
+            return WaterVerticalSpeed * Mathf.Sin(transform.rotation.z);
+        }
+        else
+        {
+            return AirVerticalSpeed * Mathf.Sin(transform.rotation.z);
+        }  
     }
 
 
     void LocalRotate (float z)
     {
-        float zafaterRotation = z + transform.rotation.z *180 / Mathf.PI;
-        if (zafaterRotation < MaximumVerticalAngleTop && zafaterRotation > MaximumVerticalAngleBottom)
+        float zAfterRotation = z + transform.rotation.z *180 / Mathf.PI;
+        if (zAfterRotation < MaximumVerticalAngleTop && zAfterRotation > MaximumVerticalAngleBottom)
         {
             transform.Rotate(0, 0, z);
         }
