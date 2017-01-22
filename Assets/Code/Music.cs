@@ -18,6 +18,7 @@ public class Music : MonoBehaviour {
 
     public OiseauAnimation oiseau;
     public GameObject ScreenDepart;
+    public GameObject Fleche;
 
 	FMOD.Studio.EventInstance _birdtheme;
 	FMOD.Studio.EventInstance _plouf;
@@ -45,6 +46,7 @@ public class Music : MonoBehaviour {
 	{
         if (Input.GetKey(KeyCode.Space))
         {
+            Fleche.SetActive(false);
             ScreenDepart.SetActive(false);
             _intro.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
             _birdtheme.start ();
