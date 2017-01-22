@@ -5,6 +5,10 @@ public class OiseauAnimation : MonoBehaviour
 {
 	public GameObject MoveComponent;
 
+    private Vector3 StartPosition;
+    private Vector3 StartPositionInner;
+    private Quaternion StarttRotation;
+
     public float AirVerticalSpeed;
     public float WaterVerticalSpeed;
 
@@ -16,15 +20,32 @@ public class OiseauAnimation : MonoBehaviour
     public bool HasWaterTransitionBeenPlayed;
     public bool IsInWater;
 
+    public bool IsAlive;
 
+    private Gauthier.Score scoreComponent;
 
-    void Start () 
-	{
+    void Start ()
+    {
+        var score = GameObject.FindObjectsOfType<Gauthier.Score>();
+        if (score.Length > 0)
+        {
+            scoreComponent = score[0];
+        }
 
-	}
+        StartPosition = MoveComponent.transform.position;
+        StarttRotation = transform.rotation;
+        StartPositionInner = transform.position;
+        IsAlive = true;
+    }
 
     void Update()
-    {        
+    {
+        if (!IsAlive)
+        {
+            LocalRotate(-RotationSpeed * Time.deltaTime);
+            return;
+        }
+
         if (Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.UpArrow))
         {
             LocalRotate(RotationSpeed * Time.deltaTime);
@@ -37,19 +58,16 @@ public class OiseauAnimation : MonoBehaviour
 
     private void FixedUpdate()
     {
-        MoveComponent.transform.Translate(0, Time.fixedDeltaTime * ComputeVerticalSpeed(), 0);
+         MoveComponent.transform.Translate(0, Time.fixedDeltaTime * ComputeVerticalSpeed(), 0);
     }
 
     void OnCollisionStay (Collision c)
 	{
 		if (c.gameObject.tag == "limite") 
 		{
-            var score =  GameObject.FindObjectsOfType<Gauthier.Score>();
-			if (score.Length > 0)
-            {
-                score[0].GameFinished = true;
-            }	
-		}
+            scoreComponent.EndGame();
+            IsAlive = false;
+        }
 	}
 
 	void OnCollisionEnter (Collision c)
@@ -67,6 +85,8 @@ public class OiseauAnimation : MonoBehaviour
                 HasWaterTransitionBeenPlayed = false;
                 break;
             case "obstacle":
+                scoreComponent.EndGame();
+                IsAlive = false;
                 break;
             default:
             break;
@@ -110,6 +130,14 @@ public class OiseauAnimation : MonoBehaviour
         {
             transform.Rotate(0, 0, z);
         }
+    }
+
+    public void Rebird()
+    {
+        IsAlive = true;
+        MoveComponent.transform.position = StartPosition;
+        transform.rotation = StarttRotation;
+        transform.position = StartPositionInner;
     }
 
 }
