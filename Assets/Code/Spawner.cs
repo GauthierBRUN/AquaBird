@@ -39,15 +39,18 @@ namespace Gauthier
 
         void SpawnObject()
         {
-            var newFoudre = Instantiate(SpawnedObject);
-            newFoudre.HorizontalSpeed = InitialSpeedOfSpawned;
-            newFoudre.transform.position = new Vector3(SpawnX, MinimalSpawnHeight + Random.value * (MaximalSpawnHeight - MinimalSpawnHeight), 0);
+            if (Score.IsGameRunning)
+            {
+                var newFoudre = Instantiate(SpawnedObject);
+                newFoudre.HorizontalSpeed = InitialSpeedOfSpawned;
+                newFoudre.transform.position = new Vector3(SpawnX, MinimalSpawnHeight + Random.value * (MaximalSpawnHeight - MinimalSpawnHeight), 0);
+            }
         }
 
         float GenerateTimeToNextSpawn()
         {
             float rand = Random.value;
-            float res = MinimalTimeInterval - Mathf.Log(rand / Lambda) / Lambda;
+            float res = (MinimalTimeInterval * (1 + rand)) / (Score.SpawnSpeed + 0.1f);
             return res;
         }
 

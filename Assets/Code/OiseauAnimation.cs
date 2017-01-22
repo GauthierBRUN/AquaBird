@@ -66,7 +66,6 @@ public class OiseauAnimation : MonoBehaviour
 		if (c.gameObject.tag == "limite") 
 		{
             scoreComponent.EndGame();
-            IsAlive = false;
         }
 	}
 
@@ -86,7 +85,6 @@ public class OiseauAnimation : MonoBehaviour
                 break;
             case "obstacle":
                 scoreComponent.EndGame();
-                IsAlive = false;
                 break;
             default:
             break;
